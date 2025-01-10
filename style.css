@@ -55,7 +55,7 @@ main{
    flex-wrap: wrap;
    
 }
-.bottom h1{
+.bottom #bubblediv{
     width: 50px;
     height: 50px;
     border-radius: 50%;

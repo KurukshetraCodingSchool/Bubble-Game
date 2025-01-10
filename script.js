@@ -1,23 +1,56 @@
-var botoom = document.querySelector(".bottom");
+var bottom = document.querySelector(".bottom");
 var hit =  document.querySelector(".hit");
-var score =  document.querySelector(".score");
-var count = 0 ;
+var incressScore =  document.querySelector(".score");
+var timerdiv =  document.querySelector(".timer")
+var count = 30;
+var score  = 0;
+var random;
 
+function getbubble () {
+    bottom.innerHTML = ``
+        for (let i  = 0; i<140; i++) {
+            var rn = Math.floor(Math.random()*10);
+        bottom.innerHTML += `<div id = 'bubblediv' >${rn}</div>`
+        }
+    }
 
-
-hit.innerHTML += `${Math.floor(Math.random()*10)}`
-if (count<=100) {
-    count+=10;
-    console.log(count)
+function Score (){
+    score +=10
+    incressScore.textContent = `Score: ${score}`
     
+ }   
+
+function gethit(){
+    random = `${Math.floor(Math.random()*10)}`
+    hit.textContent += random;
+}
+
+
+
+bottom.addEventListener('click',function(dets){
+     if(Number(dets.target.textContent) === random){
+    Score();
+    gethit();
+    getbubble();
+    console.log(dets)
 }
 else{
-    count--;
-    console.log(count)
+    bottom.innerHTML = `<h1> Game Over </h1>`
 }
-score.innerHTML += count+ " Points";
+})
 
 
-for (let i  = 0; i<140; i++) {
-    botoom.innerHTML += `<h1>${Math.floor(Math.random()*10)}</h1>`
+function timer(){
+setInterval(function(){
+    if(count>0){
+        count--;
+        timerdiv.textContent = count;
+    }
+    else{
+        bottom.innerHTML =`<h1> Game Over </h1>`;
+    }
+},1000)
 }
+getbubble()
+timer()
+gethit()
